@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
 import { AppModule } from './app.module';
-
+import { ConfigService } from '@nestjs/config';
 /**
  * Bootstrap function
  *
@@ -11,6 +11,9 @@ async function bootstrap() {
   // Create the NestJS app using the root AppModule
   const app = await NestFactory.create(AppModule);
 
+  const configService = app.get(ConfigService);
+  const frontendUrl = configService.get<string>('FRONTEND_URL');
+
   /**
    * Enable CORS (Cross-Origin Resource Sharing)
    *
@@ -19,9 +22,10 @@ async function bootstrap() {
    * - credentials: true allows cookies or authentication headers
    *   to be sent along with requests.
    */
+
   app.enableCors({
-    origin: 'http://localhost:3000',
-    credentials: true,
+    origin: frontendUrl, // allows only your frontend origin
+    credentials: true, // allows cookies if needed
   });
 
   app.useGlobalPipes(
