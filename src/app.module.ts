@@ -7,6 +7,7 @@ import { ConfigModule } from '@nestjs/config';
 import { typeOrmConfig } from './config/database.config';
 import { BooksModule } from './modules/books/books.module';
 import { AuthModule } from './modules/auth/auth.module';
+import { HealthModule } from './modules/health/health.module';
 
 /**
  * AppModule
@@ -47,6 +48,7 @@ import { AuthModule } from './modules/auth/auth.module';
      */
     AuthModule,
     BooksModule,
+    HealthModule,
   ],
 })
 export class AppModule {}
