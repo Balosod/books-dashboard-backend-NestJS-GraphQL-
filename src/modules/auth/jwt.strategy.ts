@@ -65,7 +65,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
    * Whatever is returned here will be assigned to `req.user`.
    */
   async validate(payload: any) {
-    console.log('✅ JWT verified:', payload);
+    // console.log('✅ JWT verified:', payload);
     return payload;
   }
 }
